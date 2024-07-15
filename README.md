@@ -1,27 +1,98 @@
-IBM Maximo® Application Suite is a set of applications for asset monitoring, management, predictive maintenance and reliability planning. 
+Maximo Application Suite Readme File
+Introduction
+This readme file provides information about the Maximo Application Suite project, its dependencies, and installation procedures.
 
-Get the most value from your enterprise assets with Maximo Application Suite. It’s a single, integrated cloud-based platform that uses AI, IoT and analytics to optimize performance, extend asset lifecycles and reduce operational downtime and costs.
+Prerequisites
+Ensure you have the following prerequisites installed before proceeding:
 
-With market-leading technology from IBM Maximo, you’ll have access to configurable CMMS, EAM, APM and RCM applications, along with streamlined installation and administration, plus a better user experience with shared data and workflows.
+Java Development Kit (JDK) 8 or later
+Git version 2.25.0 or higher
+Maven 3.x
+Installation
+Follow these steps to install the Maximo Application Suite:
 
-Why IBM Maximo Application Suite?
-The IDC Business Value of IBM Maximo report, sponsored by IBM, found that ten surveyed companies with an average of 15,840 employees have obtained the results stated below after adopting IBM Maximo. These are annual benefits on average for the interviewed enterprises.
+Clone the Maximo Application Suite repository:
 
-## Benefits of maximo application suite
-Control complex environments
-Advanced analytics deliver greater insights so you can take the best actions to optimize assets.
+git clone [External URL]
 
-Streamline and unify operations
-A single integrated platform provides a comprehensive view of assets across the enterprise.
+Navigate to the cloned repository folder:
 
-Boost resilience and reliability
-AI monitoring facilitates condition-based maintenance that can resolve issues before they happen.
+cd maximo-application-suite
 
-Simplify deployment
-Scale up as your business needs evolve by easily installing additional applications.
+Build and deploy the Maximo Application Suite using Maven:
 
-Pay for only what you use
-You have full entitlement to the suite with the flexibility to chose and control your license capacity.
+mvn clean package org.jenkins-ci.tools:maven-deploy-plugin:2.21:deploy
 
-Deploy on any cloud
-Operate on prem, SaaS or on any cloud using the Red Hat® OpenShift® run-anywhere module.
+Access the Maximo Application Suite web interface by navigating to [External URL]
+
+Dependencies
+The Maximo Application Suite depends on several external libraries. These dependencies are automatically managed by Maven.
+
+Building and Deploying the Maximo Application Suite
+After installing the necessary tools and dependencies, you can build and deploy the Maximo Application Suite using Maven.
+
+Testing
+To run the unit tests, navigate to the 
+src/test/java
+ directory and execute the following command:
+
+bash mvn test
+
+For integration testing, set up a database connection and execute the following commands:
+
+Initialize the database schema: sql ./dbscripts/init_database.sh
+
+Populate the database with sample data: sql ./dbscripts/populate_database.sh
+
+Run the integration tests: bash mvn verify
+
+Troubleshooting
+If you encounter any issues while working with the Maximo Application Suite, consult the troubleshooting section in the `src/main/resources
+
+CIO CI / CD Pipeline Catalog
+
+https://pages.github.ibm.com/cio-ci-cd/pipeline-catalog-docs
+CIO CI / CD Pipeline Catalog
+
+https://pages.github.ibm.com/cio-ci-cd/pipeline-catalog-docs/
+Tasks - CIO CI / CD Pipeline Catalog
+
+https://pages.github.ibm.com/cio-ci-cd/pipeline-catalog-docs/conventions/tasks/
+Release Management - CIO CI / CD Pipeline Catalog
+
+https://pages.github.ibm.com/cio-ci-cd/pipeline-catalog-docs/maintainers/release-management/
+Requirements - CIO CI / CD Technical
+
+
+Maximo Migration Troubleshooting Guide
+Introduction
+This guide aims to assist users who are migrating their data from Maximo to another system. It includes common issues encountered during the migration process and solutions to resolve them.
+
+Prerequisites
+Ensure you have completed the necessary prerequisites as outlined in the official Maximo migration guide provided by the vendor.
+
+Common Issues
+Issue 1: Data Import Failure
+When attempting to import data from Maximo, you may encounter an error related to invalid records.
+
+Solution
+Check the integrity of the exported data file before importing it. Correct any errors identified and retry the import process.
+
+Issue 2: Connection Timeout Error
+During the migration process, you might experience connection timeout errors while connecting to the Maximo database.
+
+Solution
+Increase the connection time limit in your migration script or application settings. This can typically be done by modifying the 
+connectTimeout
+ parameter.
+
+Issue 3: Duplicate Records
+After migrating data to the new system, duplicate records may appear due to mismatched primary keys.
+
+Solution
+Update the primary key schema in both systems to ensure unique record identification. Implement a validation step in your migration script to prevent duplicates.
+
+Troubleshooting
+If you cannot resolve the issue using the suggested solutions, refer to the official Maximo migration guide or contact the vendor's support team for assistance.
+
+IBM Maximo Application Suite can already be deployed on AWS. However, if you're looking to migrate an existing installation of Maximo to AWS, there are several factors to consider. These include assessing your current environment, configuring networking and storage settings, migrating data and configurations, and testing the migrated system thoroughly. It's recommended to consult the official IBM Maximo Application Suite documentation and seek assistance from experienced professionals for a smooth transition.
